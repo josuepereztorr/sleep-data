@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.IO;
 
 namespace SleepData
@@ -17,6 +18,8 @@ namespace SleepData
 
             // input response 
             string resp = Console.ReadLine();
+
+            Console.WriteLine();
 
             if (resp == "1")
             {
@@ -104,11 +107,11 @@ namespace SleepData
                         Console.WriteLine($"Week of {date:MMM}, {date:dd}, {date:yyy}");
 
                         // display column headers 
-                        Console.WriteLine($"{"Su",3}{"Mo",3}{"Tu",3}{"We",3}{"Th",3}{"Fr",3}{"Sa",3}");
-                        Console.WriteLine($"{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}");
+                        Console.WriteLine($"{"Mo",3}{"Tu",3}{"We",3}{"Th",3}{"Fr",3}{"Sa",3}{"Su",3}{"Tot",4}{"Avg",4}");
+                        Console.WriteLine($"{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}{"--",3}{"---",4}{"---",4}");
 
                         // display hours of sleep for each day 
-                        Console.WriteLine($"{hours[0],3}{hours[1],3}{hours[2],3}{hours[3],3}{hours[4],3}{hours[5],3}{hours[6],3}");
+                        Console.WriteLine($"{hours[1],3}{hours[2],3}{hours[3],3}{hours[4],3}{hours[5],3}{hours[6],3}{hours[0],3}{hours.Sum(),4}{$"{hours.Average():N1}",4}");
                         Console.WriteLine();
                     }
 
