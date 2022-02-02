@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SleepData
 {
@@ -29,7 +30,7 @@ namespace SleepData
                 // determine start and end date 
                 DateTime today = DateTime.Now;
 
-                // we want full weeks sunday - saturday, endDate is a DateTime object that ends on the previous sunday
+                // we want full weeks sunday - saturday, endDate is a DateTime object that ends on the previous sunday. Sunday using the DayOfWeek enum is a (int) 0
                 DateTime endDate = today.AddDays(-(int)today.DayOfWeek);
 
                 // subtract # of weeks from endDate to get the startDate, we multiplay the number of weeks by 7 days to get the total days to subtract 
@@ -39,6 +40,9 @@ namespace SleepData
 
                 // random number generator 
                 Random rnd = new Random();
+
+                // create file 
+                StreamWriter sw = new StreamWriter("data.txt");
 
                 // fill in dummy data for each week 
                 while (startDate < endDate)
@@ -55,14 +59,18 @@ namespace SleepData
                     }
 
                     // write a formatted string with the number of hours of sleep 
-                    Console.WriteLine($"{startDate:M/d/yy},{string.Join("|", hours)}");
+                    //Console.WriteLine($"{startDate:M/d/yy},{string.Join("|", hours)}");
+
+                    // use the StreamWriter to write a string to the stream
+                    sw.WriteLine($"{startDate:M/d/yy},{string.Join("|", hours)}");
 
                     // add 1 week to startDate to continue with the loop
                     startDate = startDate.AddDays(7);
 
                 }
 
-
+                // ends the stream from the StreamWriter
+                sw.Close();
             }
             else if (resp == "2")
             {
