@@ -35,7 +35,33 @@ namespace SleepData
                 // subtract # of weeks from endDate to get the startDate, we multiplay the number of weeks by 7 days to get the total days to subtract 
                 DateTime startDate = endDate.AddDays(-(weeks * 7));
 
-                Console.WriteLine(startDate);
+                // ---- DUMMY DATA ----
+
+                // random number generator 
+                Random rnd = new Random();
+
+                // fill in dummy data for each week 
+                while (startDate < endDate)
+                {
+
+                    // create a new array with a length of 7; 7 days in a week 
+                    int[] hours = new int[7];
+
+                    // loop 7 times for each day of the week 
+                    for (int i = 0; i < hours.Length; i++)
+                    {
+                        // generate random number of hours slept between 4-12 for each day 
+                        hours[i] = rnd.Next(4, 13);
+                    }
+
+                    // write a formatted string with the number of hours of sleep 
+                    Console.WriteLine($"{startDate:M/d/yy},{string.Join("|", hours)}");
+
+                    // add 1 week to startDate to continue with the loop
+                    startDate = startDate.AddDays(7);
+
+                }
+
 
             }
             else if (resp == "2")
