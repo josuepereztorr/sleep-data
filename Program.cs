@@ -26,6 +26,17 @@ namespace SleepData
                 // input the response (convert to int)
                 int weeks = int.Parse(Console.ReadLine());
 
+                // determine start and end date 
+                DateTime today = DateTime.Now;
+
+                // we want full weeks sunday - saturday, endDate is a DateTime object that ends on the previous sunday
+                DateTime endDate = today.AddDays(-(int)today.DayOfWeek);
+
+                // subtract # of weeks from endDate to get the startDate, we multiplay the number of weeks by 7 days to get the total days to subtract 
+                DateTime startDate = endDate.AddDays(-(weeks * 7));
+
+                Console.WriteLine(startDate);
+
             }
             else if (resp == "2")
             {
